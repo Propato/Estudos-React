@@ -1,0 +1,21 @@
+:root {
+    --fundo-header-footer: rgba(22, 22, 22, 1);
+}
+
+.Footer{
+    height: 100px;
+    background-color: var(--fundo-header-footer);
+}
+.Footer div{
+    height: 100px;
+    background-color: var(--fundo-header-footer);
+}
+.Footer ul{
+    list-style: none;
+    display: flex;
+}
+.Footer ul li{
+    font-size: 18px;
+    letter-spacing: 2px;
+    margin-left: 50px;
+}

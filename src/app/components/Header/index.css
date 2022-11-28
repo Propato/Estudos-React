@@ -1,0 +1,44 @@
+:root {
+    --fundo-header-footer: rgba(22, 22, 22, 1);
+    --red: rgb(163, 7, 41);
+}
+
+.Header{
+    height: 70px;
+    background-color: var(--fundo-header-footer);
+}
+.Header div{
+    height: 70px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    margin-left: auto;
+    margin-right: auto;
+    width: 1200px;
+}
+.Header a{ text-decoration: none; }
+.Header a:hover{
+    color: var(--red);
+}
+.Header ul{
+    list-style: none;
+    display: flex;
+}
+.Header ul li{
+    font-size: 21px;
+    letter-spacing: 2px;
+    margin-left: 50px;
+}
+.Init{
+    font-size: 28px;
+    letter-spacing: 2px;
+    
+    border-top: 2px solid var(--red);
+    border-bottom: 2px solid var(--red);
+
+    transition: 0.25s cubic-bezier(1, 1, 1, 1);
+}
+.Init:hover{
+    transform: scale(1.1);
+}
