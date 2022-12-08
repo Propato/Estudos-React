@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
+import { useAsyncValue } from 'react-router-dom';
 
 import { Footer, Header } from '../../components';
 import './index.css'
@@ -13,6 +14,7 @@ export const Login = () => {
         console.log(name, CPF, senha);
     }
 
+    /*
     useEffect( () => {
         if(window.confirm('real ou fake?')){
             console.log('real');
@@ -20,6 +22,7 @@ export const Login = () => {
             console.log('fake');
         }
     }, []);
+    */
 
     useEffect( () => {
         console.log(name);

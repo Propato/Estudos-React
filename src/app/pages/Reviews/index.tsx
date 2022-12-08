@@ -1,16 +1,34 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Header, Footer } from '../../components';
 import './index.css'
+import axios from 'axios';
 
 export const Reviews = () => {
 
     const [name, setName] = useState('');
-    const [CPF, setCPF] = useState('');
-    const [senha, setSenha] = useState('');
+    const [salario, setSalario] = useState('');
+    const [profissao, setProfissao] = useState('');
+
+    const [table, setTable] = useState(Array<{nome:string, salario:number, profissao:string}>);
 
     const handleLogin = () => {
-        console.log(name, CPF, senha);
-    }
+        console.log(name, salario, profissao);
+        axios.post("http://localhost:3000/register", {
+            name: name,
+            salario: salario,
+            profissao: profissao
+        }).then((response) => { console.log(response); });
+        
+        axios.get("http://localhost:3000/getTable").then((response) => {
+            setTable(response.data);
+        });
+    };
+
+    useEffect(() => {
+        axios.get("http://localhost:3000/getTable").then((response) => {
+            setTable(response.data);
+        });
+    }, []);
 
     return(
         <div>
@@ -22,16 +40,19 @@ export const Reviews = () => {
                         <input title="Digite seu nome" value={name} onChange={e => setName(e.target.value)}/>
                     </label><br/>
                     <label>
-                        <span>CPF</span>
-                        <input type='text' title="Digite um CPF no formato: xxx.xxx.xxx-xx" value={CPF} onChange={e => setCPF(e.target.value)}/>
+                        <span>Salario</span>
+                        <input type='number' title="Digite seu salario" value={salario} onChange={e => setSalario(e.target.value)}/>
                     </label><br/>
                     <label>
-                        <span>Senha</span>
-                        <input type='password' value={senha} onChange={e => setSenha(e.target.value)}/>
+                        <span>Profissao</span>
+                        <input type='text' value={profissao} onChange={e => setProfissao(e.target.value)}/>
                     </label><br/>
-
-                    <button type='button' onClick={handleLogin}>Entrar</button>
+                    
+                    <button type='button' onClick={handleLogin}>Salvar</button>
             </form>
+            <div className='list'>
+                {table.map((value, index) => <div key={index} className='list-topic'> <h3>{index}, {value.nome}, {value.salario}, {value.profissao}</h3> </div>)}
+            </div>
             <Footer/>
         </div>
     );

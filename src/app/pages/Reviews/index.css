@@ -1,0 +1,12 @@
+.list{
+    border: 2px solid white;
+    width: 40vw;
+}
+
+.list-topic{
+    border: 3px solid rgba(0, 0, 0, 0);
+}
+.list-topic:hover{
+    background: rgb(23, 30, 76);
+    border: 3px solid rgb(0, 0, 0);
+}

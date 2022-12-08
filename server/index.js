@@ -1,23 +1,48 @@
 import express from 'express';
 import mysql from "mysql";
+import cors from "cors";
 
 const app = express();
+app.use(cors());
+app.use(express.json());
+
 const db = mysql.createPool({
-    host: "localhost",
-    port: "3306",
-    user: "root",
-    password: "password",
+    host: "winhost",
+    user: "propato",
+    password: '#Divadpropato123',
     database: "teste",
+    port: 3306
 });
 
-app.get('/', (req, rest) => {
-    rest.send("eitaaa");
+app.get("/getTable", (req, res) => {
 
-    let SQL = "INSERT INTO reviews ( nome, salario, profissao ) VALUES ( 'asdasd', '5678', 'iiiiaaaff')";
+    let SQL = 'SELECT * FROM t1';
 
     db.query(SQL, (err, result) => {
-        console.log(err);
+        if(err)
+            { console.log(err); }
+            else{
+                res.send(result);
+                console.log(result);
+            }
     });
+});
+
+app.post("/register", (req, res) => {
+
+    const { name } = req.body;
+    const { salario } = req.body;
+    const { profissao } = req.body;
+
+    console.log(name, salario, profissao);
+
+    let SQL = "INSERT INTO t1 ( nome, salario, profissao ) VALUES ( ?, ?, ? )";
+
+    db.query(SQL, [name, salario, profissao], (err, result) => {
+        if(err){
+            console.log(err)}
+            else console.log("ebaaaa");
+    })
 });
 
 app.listen(3000, () => {
